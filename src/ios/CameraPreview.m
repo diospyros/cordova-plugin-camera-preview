@@ -691,6 +691,17 @@
 
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:sampleBuffer];
         UIImage *capturedImage  = [[UIImage alloc] initWithData:imageData];
+        
+        
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Alert" message:@capturedImage.size.height delegate:self cancelButtonTitle:@"Hide" otherButtonTitles:nil];
+alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+[alert show];
+[alert release];
+        
+        
+        
+        
 
         CIImage *capturedCImage;
         //image resize
