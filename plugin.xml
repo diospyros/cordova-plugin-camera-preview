@@ -50,11 +50,36 @@
         <param name="ios-package" value="CameraPreview" onload="true" />
       </feature>
     </config-file>
+    
+    <config-file parent="NSCameraUsageDescription" target="*-Info.plist" >
+         <string>need camera access to take pictures</string>
+    </config-file>
+    <config-file parent="NSPhotoLibraryUsageDescription" target="*-Info.plist" >
+         <string>need photo library access to get pictures from there</string>
+    </config-file>
+    <config-file parent="NSLocationWhenInUseUsageDescription" target="*-Info.plist" >
+         <string>need location access to find things nearby</string>
+    </config-file>
+    <config-file parent="NSPhotoLibraryAddUsageDescription" target="*-Info.plist" >
+         <string>need photo library access to save pictures there</string>
+    </config-file>
+    <config-file parent="NSMicrophoneUsageDescription" target="*-Info.plist" >
+         <string>need mic access to record audio</string>
+    </config-file>
+    <config-file parent="UIFileSharingEnabled" target="*-Info.plist" >
+         <true/>
+    </config-file>
+    <config-file parent="LSSupportsOpeningDocumentsInPlace" target="*-Info.plist" >
+         <true/>
+    </config-file>
+    <config-file parent="UIApplicationOpenURLOptionsOpenInPlaceKey" target="*-Info.plist" >
+         <true/>
+    </config-file>
 
     <header-file src="src/ios/CameraPreview.h" />
     <source-file src="src/ios/CameraPreview.m" />
 
-     <header-file src="src/ios/TemperatureAndTint.h" />
+    <header-file src="src/ios/TemperatureAndTint.h" />
     <source-file src="src/ios/TemperatureAndTint.m" />
 
     <header-file src="src/ios/CameraSessionManager.h" />
