@@ -778,11 +778,13 @@
 // use a random string instead of index                                       // JWR
 - (NSString*)generateRandomString
 {
-    NSMutableString* string = [NSMutableString stringWithCapacity:num];
-    for (int i = 0; i < 8; i++) {
-        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(26))];
-    }
-    return string;
+  NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  NSMutableString *randomString = [NSMutableString stringWithCapacity: 8];
+  for (int i=0; i<8; i++) 
+  {
+    [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+  }
+  return randomString;
 }
 
 - (NSString*)getTempFilePath:(NSString*)extension
