@@ -5,7 +5,7 @@
 #import "CameraPreview.h"
 
 //#define TMP_IMAGE_PREFIX @"cpcp_capture_"
-#define TMP_IMAGE_PREFIX @"pixteva_"
+#define TMP_IMAGE_PREFIX @"pxt_"
 
 @implementation CameraPreview
 
