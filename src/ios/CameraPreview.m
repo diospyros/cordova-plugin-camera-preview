@@ -774,7 +774,7 @@
 //    NSURL * url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 //    return [url absoluteString];
 }
-/*
+
 // use a random string instead of index                                       // JWR
 - (NSString*)generateRandomString
 {
@@ -784,13 +784,13 @@
     }
     return string;
 }
-*/
+
 - (NSString*)getTempFilePath:(NSString*)extension
 {
     NSString* tmpPath = [self getTempDirectoryPath];
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
     NSString* filePath;
-    NSString* const rndName = @"abcdefg";
+    NSString* const rndName = [self generateRandomString];
 
     // generate unique file name
     int i = 1;
