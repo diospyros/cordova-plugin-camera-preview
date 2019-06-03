@@ -790,7 +790,7 @@
     NSString* tmpPath = [self getTempDirectoryPath];
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
     NSString* filePath;
-    NSString* const rndName = [self generateRandomString];
+    NSString* rndName = [self generateRandomString];
 
     // generate unique file name
     int i = 1;
