@@ -5,7 +5,7 @@
 #import "CameraPreview.h"
 
 //#define TMP_IMAGE_PREFIX @"cpcp_capture_"
-#define TMP_IMAGE_PREFIX @"pixteva/"
+#define TMP_IMAGE_PREFIX @"pixteva_"
 
 @implementation CameraPreview
 
@@ -789,12 +789,11 @@
     NSString* tmpPath = [self getTempDirectoryPath];
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
     NSString* filePath;
-    NSString* rndName;
+    NSString* const rndName @"abcdefg";
 
     // generate unique file name
     int i = 1;
     do {
-        rndName = [self generateRandomString];
         filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_IMAGE_PREFIX, rndName, extension];
     } while ([fileMgr fileExistsAtPath:filePath]);
     
