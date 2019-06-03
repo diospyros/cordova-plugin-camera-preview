@@ -5,7 +5,7 @@
 #import "CameraPreview.h"
 
 //#define TMP_IMAGE_PREFIX @"cpcp_capture_"
-#define TMP_IMAGE_PREFIX @""
+#define TMP_IMAGE_PREFIX @"pixteva/"
 
 @implementation CameraPreview
 
@@ -775,9 +775,10 @@
 }
 
 // use a random string instead of index                                       // JWR
-- (NSString*)generateRandomString:(int)num {
+- (NSString*)generateRandomString
+{
     NSMutableString* string = [NSMutableString stringWithCapacity:num];
-    for (int i = 0; i < num; i++) {
+    for (int i = 0; i < 8; i++) {
         [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(26))];
     }
     return string;
@@ -788,11 +789,12 @@
     NSString* tmpPath = [self getTempDirectoryPath];
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
     NSString* filePath;
+    NSString* rndName;
 
     // generate unique file name
     int i = 1;
     do {
-        NSString* rndName = [self generateRandomString: 8];
+        rndName = [self generateRandomString];
         filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_IMAGE_PREFIX, rndName, extension];
     } while ([fileMgr fileExistsAtPath:filePath]);
     
