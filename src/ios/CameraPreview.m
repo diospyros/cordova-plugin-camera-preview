@@ -770,9 +770,10 @@
 {
 //  NSString* tmpPath = [NSTemporaryDirectory()stringByStandardizingPath];    //JWR
 //  return tmpPath;                                                           // JWR
-    // use Documents directory instead                                        // JWR
-  NSURL * url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-  return [url absoluteString];
+  // use Documents directory instead                                        // JWR
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *basePath = paths.firstObject;
+  return basePath;
 }
 
 // use a random string instead of index                                       // JWR
