@@ -4,7 +4,8 @@
 #import <GLKit/GLKit.h>
 #import "CameraPreview.h"
 
-#define TMP_IMAGE_PREFIX @"cpcp_capture_"
+//#define TMP_IMAGE_PREFIX @"cpcp_capture_"
+#define TMP_IMAGE_PREFIX @""
 
 @implementation CameraPreview
 
@@ -767,8 +768,10 @@
 
 - (NSString*)getTempDirectoryPath
 {
-  NSString* tmpPath = [NSTemporaryDirectory()stringByStandardizingPath];
-  return tmpPath;
+//  NSString* tmpPath = [NSTemporaryDirectory()stringByStandardizingPath];
+//  return tmpPath;
+    // use Documents directory instead
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 - (NSString*)getTempFilePath:(NSString*)extension
