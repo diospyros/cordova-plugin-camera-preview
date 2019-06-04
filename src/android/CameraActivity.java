@@ -413,7 +413,8 @@ public class CameraActivity extends Fragment {
     File cache = null;
 
     // Use internal storage
-    cache = getActivity().getCacheDir();
+//    cache = getActivity().getCacheDir();      // JWR
+    cache = getActivity().getDataDir();    
 
     // Create the cache directory if it doesn't exist
     cache.mkdirs();
