@@ -418,7 +418,26 @@ public class CameraActivity extends Fragment {
     cache = getActivity().getExternalFilesDir(null);
 //    cache = MainActivity.this.getExternalFilesDir(null);  // JWR
 //    cache = getBaseActivity().getExternalFilesDir();  //JWR
-//    cache = Environment.getExternalStorageDirectory(); // JWR    
+//    cache = Environment.getExternalStorageDirectory(); // JWR
+    
+    String SDCardStatus = Environment.getExternalStorageState();
+
+    // MEDIA_UNKNOWN: unrecognized SD card
+    // MEDIA_REMOVED: no SD card at all
+    // MEDIA_UNMOUNTED: SD card exist but not mounted, not available in Android 4.0+
+    // MEDIA_CHECKING: preparing SD card, e.g. powered on and booting
+    // MEDIA_MOUNTED: mounted and ready to use
+    // MEDIA_MOUNTED_READ_ONLY
+    switch (SDCardStatus) {
+        case Environment.MEDIA_MOUNTED:
+            return true;
+        case Environment.MEDIA_MOUNTED_READ_ONLY:
+            Toast.makeText(this, "SD card is ready only.", Toast.LENGTH_LONG).show();
+            return false;
+        default:
+            Toast.makeText(this, "SD card is not available.", Toast.LENGTH_LONG).show();
+            return false;
+    }    
 
     // Create the cache directory if it doesn't exist
 //    cache.mkdirs();                           // JWR
