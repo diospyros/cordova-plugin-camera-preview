@@ -409,21 +409,20 @@ public class CameraActivity extends Fragment {
     return 0;
   }
 
-  private String getTempDirectoryPath() {
-    File cache = null;
-
-    // Use internal storage
-//    cache = getActivity().getCacheDir();      // JWR
-//    cache = getActivity().getFilesDir();      //JWR
-    cache = getActivity().getExternalFilesDir(null);
-
-    // Create the cache directory if it doesn't exist
-//    cache.mkdirs();                           // JWR
-    return cache.getAbsolutePath();
-  }
-
   private String getTempFilePath() {
-    return getTempDirectoryPath() + "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg";
+ 
+//    f1 = getActivity().getFilesDir();      //JWR
+    File f1 = getActivity().getExternalFilesDir(null);
+
+    File fileInDirectory = new File( f1, "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
+    
+    if(!fileInDirectory.exists()) // Create the file if it does not exist.
+      fileInDirectory.createNewFile();
+    fileInDirectory.setReadable(true, false);
+    fileInDirectory.setWritable(true, false);
+
+//    return getTempDirectoryPath() + "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg";
+    return fileInDirectory;
   }
 
   PictureCallback jpegPictureCallback = new PictureCallback(){
@@ -460,9 +459,8 @@ public class CameraActivity extends Fragment {
           String encodedImage = Base64.encodeToString(data, Base64.NO_WRAP);
 
           eventListener.onPictureTaken(encodedImage);
-        } else {
-          String path = getTempFilePath();
-          FileOutputStream out = new FileOutputStream(path);
+        } else {          
+          FileOutputStream out = new FileOutputStream( getTempFilePath() );
           out.write(data);
           out.close();
           eventListener.onPictureTaken(path);
