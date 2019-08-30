@@ -417,23 +417,7 @@ public class CameraActivity extends Fragment {
     else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {  return 270; }
     return 0;
   }
-/*
-  private File getTempFilePath() {
- 
-//    f1 = getActivity().getFilesDir();      //JWR
-    File f1 = getActivity().getExternalFilesDir(null);
 
-    File fileInDirectory = new File( f1, "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
-    
-//    if(!fileInDirectory.exists()) // Create the file if it does not exist.
-//    fileInDirectory.createNewFile();
-    fileInDirectory.setReadable(true, false);
-    fileInDirectory.setWritable(true, false);
-
-//    return getTempDirectoryPath() + "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg";
-    return fileInDirectory;
-  }
-*/
   PictureCallback jpegPictureCallback = new PictureCallback(){
     public void onPictureTaken(byte[] data, Camera arg1){
       Log.d(TAG, "CameraPreview jpegPictureCallback");
