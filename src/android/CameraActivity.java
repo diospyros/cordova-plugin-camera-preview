@@ -415,17 +415,10 @@ public class CameraActivity extends Fragment {
     // Use internal storage
 //    cache = getActivity().getCacheDir();      // JWR
 //    cache = getActivity().getFilesDir();      //JWR
-    cache = getActivity().getExternalFilesDir(null);
+//    cache = getActivity().getExternalFilesDir(null);
 
-String state = Environment.getExternalStorageState();
-File filesDir;
-if (Environment.MEDIA_MOUNTED.equals(state)) {
-    filesDir = getExternalFilesDir(null);
-} else {
-    filesDir = getFilesDir();
-    System.out.println("\007");
-}
-//    cache = MainActivity.this.getExternalFilesDir(null);  // JWR
+//    System.out.println("\007");
+    cache = MainActivity.this.getExternalFilesDir(null);  // JWR
 //    cache = getBaseActivity().getExternalFilesDir();  //JWR
 //    cache = Environment.getExternalStorageDirectory(); // JWR
     
