@@ -35,6 +35,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.support.media.ExifInterface;
 
+import android.os.Environment;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
 import org.apache.cordova.LOG;
 
 import java.io.ByteArrayInputStream;
@@ -415,12 +424,12 @@ public class CameraActivity extends Fragment {
     File f1 = getActivity().getExternalFilesDir(null);
 
     File fileInDirectory = new File( f1, "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
-/*    
+    
     if(!fileInDirectory.exists()) // Create the file if it does not exist.
       fileInDirectory.createNewFile();
     fileInDirectory.setReadable(true, false);
     fileInDirectory.setWritable(true, false);
-*/
+
 //    return getTempDirectoryPath() + "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg";
     return fileInDirectory;
   }
