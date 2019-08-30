@@ -477,7 +477,7 @@ public class CameraActivity extends Fragment {
           }
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
-//          FileOutputStream out = new FileOutputStream( getTempFilePath() );
+          FileOutputStream out = new FileOutputStream( fileInDirectory );
 //          out.write(data);
 //          out.close();
 //          eventListener.onPictureTaken(path);
