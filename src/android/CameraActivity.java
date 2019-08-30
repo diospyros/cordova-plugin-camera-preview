@@ -415,7 +415,7 @@ public class CameraActivity extends Fragment {
     // Use internal storage
 //    cache = getActivity().getCacheDir();      // JWR
 //    cache = getActivity().getFilesDir();      //JWR
-    cache = getContext().getExternalFilesDir(null);
+    cache = getActivity().getExternalFilesDir(null);
 
 //    System.out.println("\007");
    
