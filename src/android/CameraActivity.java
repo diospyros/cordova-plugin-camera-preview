@@ -417,7 +417,7 @@ public class CameraActivity extends Fragment {
     else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {  return 270; }
     return 0;
   }
-
+/*
   private File getTempFilePath() {
  
 //    f1 = getActivity().getFilesDir();      //JWR
@@ -433,7 +433,7 @@ public class CameraActivity extends Fragment {
 //    return getTempDirectoryPath() + "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg";
     return fileInDirectory;
   }
-
+*/
   PictureCallback jpegPictureCallback = new PictureCallback(){
     public void onPictureTaken(byte[] data, Camera arg1){
       Log.d(TAG, "CameraPreview jpegPictureCallback");
@@ -468,8 +468,15 @@ public class CameraActivity extends Fragment {
           String encodedImage = Base64.encodeToString(data, Base64.NO_WRAP);
 
           eventListener.onPictureTaken(encodedImage);
-        } else {          
-            File f = new File( getTempFilePath() );
+        }
+        else {
+          File f1 = getActivity().getExternalFilesDir(null);
+          File fileInDirectory = new File( f1, "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
+    
+//    if(!fileInDirectory.exists()) // Create the file if it does not exist.
+//    fileInDirectory.createNewFile();
+          fileInDirectory.setReadable(true, false);
+          fileInDirectory.setWritable(true, false);
 //          FileOutputStream out = new FileOutputStream( getTempFilePath() );
 //          out.write(data);
 //          out.close();
