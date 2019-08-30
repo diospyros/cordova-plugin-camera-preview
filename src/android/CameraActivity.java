@@ -473,8 +473,7 @@ public class CameraActivity extends Fragment {
           File fileInDirectory = new File( getActivity().getExternalFilesDir(null), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
           if( !fileInDirectory.exists() )
           {
-            String  xx="";
-//    fileInDirectory.createNewFile();
+            fileInDirectory.createNewFile();
           }
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
