@@ -24,6 +24,9 @@
     <source-file src="src/android/camera_ids.xml" target-dir="res/values" />
 
     <preference name="ANDROID_SUPPORT_LIBRARY_VERSION" default="26+"/>
+    <preference name="AndroidPersistentFileLocation" value="Compatibility"/>
+    <preference name="AndroidExtraFilesystems" value="files,cache,sdcard,cache-external,files-external,root"/>
+
     <framework src="com.android.support:exifinterface:$ANDROID_SUPPORT_LIBRARY_VERSION" />
 
     <config-file target="res/xml/config.xml" parent="/*">
@@ -37,6 +40,8 @@
       <uses-feature android:name="android.hardware.camera" android:required="true"/>
       <uses-feature android:name="android.hardware.camera.autofocus" />
       <uses-permission android:name="android.permission.CAMERA" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     </config-file>
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
