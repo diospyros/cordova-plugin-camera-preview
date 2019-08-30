@@ -409,7 +409,7 @@ public class CameraActivity extends Fragment {
     return 0;
   }
 
-  private String getTempFilePath() {
+  private File getTempFilePath() {
  
 //    f1 = getActivity().getFilesDir();      //JWR
     File f1 = getActivity().getExternalFilesDir(null);
