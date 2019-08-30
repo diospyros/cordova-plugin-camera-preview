@@ -415,7 +415,7 @@ public class CameraActivity extends Fragment {
     // Use internal storage
 //    cache = getActivity().getCacheDir();      // JWR
 //    cache = getActivity().getFilesDir();      //JWR
-    cache = getActivity().getExternalFilesDir(DIRECTORY_DCIM);
+    cache = getActivity().getExternalFilesDir("pixteva");
 
     // Create the cache directory if it doesn't exist
 //    cache.mkdirs();                           // JWR
