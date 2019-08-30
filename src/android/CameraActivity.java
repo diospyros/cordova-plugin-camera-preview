@@ -470,11 +470,12 @@ public class CameraActivity extends Fragment {
           eventListener.onPictureTaken(encodedImage);
         }
         else {
-//          File f1 = getActivity().getExternalFilesDir(null);
           File fileInDirectory = new File( getActivity().getExternalFilesDir(null), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
-    
-//    if(!fileInDirectory.exists()) // Create the file if it does not exist.
+          if( !fileInDirectory.exists() )
+          {
+            String  xx="";
 //    fileInDirectory.createNewFile();
+          }
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
 //          FileOutputStream out = new FileOutputStream( getTempFilePath() );
