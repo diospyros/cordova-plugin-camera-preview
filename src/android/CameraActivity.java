@@ -418,9 +418,7 @@ public class CameraActivity extends Fragment {
 //    cache = getActivity().getExternalFilesDir(null);
 
 //    System.out.println("\007");
-    cache = MainActivity.this.getExternalFilesDir(null);  // JWR
-//    cache = getBaseActivity().getExternalFilesDir();  //JWR
-//    cache = Environment.getExternalStorageDirectory(); // JWR
+    cache = getBaseActivity().getExternalFilesDir(null);  //JWR
     
 
     // Create the cache directory if it doesn't exist
