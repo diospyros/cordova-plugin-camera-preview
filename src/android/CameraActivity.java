@@ -415,16 +415,7 @@ public class CameraActivity extends Fragment {
     // Use internal storage
 //    cache = getActivity().getCacheDir();      // JWR
 //    cache = getActivity().getFilesDir();      //JWR
-    cache = getActivity().getExternalFilesDir(null);
-    if( ! cache ) {
-      System.out.println("\007");
-    }
-//    if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//                if (ActivityCompat.shouldShowRequestPermissionRationale(this.cordova.getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE))
-//                    System.out.println("\007");
-//                else
-//            }
- 
+    cache = getActivity().getExternalFilesDir(DIRECTORY_DCIM);
 
     // Create the cache directory if it doesn't exist
 //    cache.mkdirs();                           // JWR
