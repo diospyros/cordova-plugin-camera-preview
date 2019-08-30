@@ -478,9 +478,9 @@ public class CameraActivity extends Fragment {
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
           FileOutputStream out = new FileOutputStream( fileInDirectory );
-//          out.write(data);
-//          out.close();
-//          eventListener.onPictureTaken(path);
+          out.write(data);
+          out.close();
+          eventListener.onPictureTaken( fileInDirectory.getAbsolutePath() );
         }
         Log.d(TAG, "CameraPreview pictureTakenHandler called back");
       } catch (OutOfMemoryError e) {
