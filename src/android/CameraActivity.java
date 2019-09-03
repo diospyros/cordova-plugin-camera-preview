@@ -57,11 +57,6 @@ import java.io.FileNotFoundException;
 //import java.io.IOException;
 
 import android.os.Environment;
-import java.nio.file.*;
-import java.nio.file.attribute.*;
-import java.util.Set;
-java.nio.file.Files;
-
 
 public class CameraActivity extends Fragment {
 
