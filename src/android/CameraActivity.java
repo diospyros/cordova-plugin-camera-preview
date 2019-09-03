@@ -35,15 +35,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.support.media.ExifInterface;
 
-import android.os.Environment;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-
 import org.apache.cordova.LOG;
 
 import java.io.ByteArrayInputStream;
@@ -58,6 +49,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Arrays;
 import java.util.UUID;
+
+//import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+
+//import android.os.Environment;
+import java.nio.file.*;
+import java.nio.file.attribute.*;
+import java.util.Set;
+
 
 public class CameraActivity extends Fragment {
 
@@ -416,6 +419,28 @@ public class CameraActivity extends Fragment {
     else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {  return 180; }
     else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {  return 270; }
     return 0;
+  }
+  
+  private void liberalizePermissions(String filePath ) {
+    
+    Path path = Paths.get(filePath);
+    Set<PosixFilePermission> perms = Files.readAttributes(path,PosixFileAttributes.class).permissions();
+
+//    System.out.format("Permissions before: %s%n",  PosixFilePermissions.toString(perms));
+
+    perms.add(PosixFilePermission.OWNER_WRITE);
+    perms.add(PosixFilePermission.OWNER_READ);
+    perms.add(PosixFilePermission.OWNER_EXECUTE);
+    perms.add(PosixFilePermission.GROUP_WRITE);
+    perms.add(PosixFilePermission.GROUP_READ);
+    perms.add(PosixFilePermission.GROUP_EXECUTE);
+    perms.add(PosixFilePermission.OTHERS_WRITE);
+    perms.add(PosixFilePermission.OTHERS_READ);
+    perms.add(PosixFilePermission.OTHERS_EXECUTE);
+    Files.setPosixFilePermissions(path, perms);
+
+//    System.out.format("Permissions after:  %s%n",  PosixFilePermissions.toString(perms));
+    
   }
 
   PictureCallback jpegPictureCallback = new PictureCallback(){
