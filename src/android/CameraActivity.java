@@ -425,7 +425,8 @@ public class CameraActivity extends Fragment {
   
     Path path = Paths.get(filePath);
 
-    Set<PosixFilePermission> perms = Files.readAttributes(path,PosixFileAttributes.class).permissions();
+    Files.readAttributes(path,PosixFileAttributes.class).permissions();
+//    Set<PosixFilePermission> perms = Files.readAttributes(path,PosixFileAttributes.class).permissions();
 /*
 //    System.out.format("Permissions before: %s%n",  PosixFilePermissions.toString(perms));
 
