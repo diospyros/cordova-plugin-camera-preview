@@ -56,7 +56,7 @@ import java.io.FileNotFoundException;
 //import java.io.FileOutputStream;
 //import java.io.IOException;
 
-//import android.os.Environment;
+import android.os.Environment;
 import java.nio.file.*;
 import java.nio.file.attribute.*;
 import java.util.Set;
@@ -422,31 +422,6 @@ public class CameraActivity extends Fragment {
     return 0;
   }
   
-  private void liberalizePermissions(String filePath ) {
-  
-    Path path = Paths.get(filePath);
-
-    BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
-//    Files.readAttributes(path,PosixFileAttributes.class).permissions();
-//    Set<PosixFilePermission> perms = Files.readAttributes(path,PosixFileAttributes.class).permissions();
-/*
-//    System.out.format("Permissions before: %s%n",  PosixFilePermissions.toString(perms));
-
-    perms.add(PosixFilePermission.OWNER_WRITE);
-    perms.add(PosixFilePermission.OWNER_READ);
-    perms.add(PosixFilePermission.OWNER_EXECUTE);
-    perms.add(PosixFilePermission.GROUP_WRITE);
-    perms.add(PosixFilePermission.GROUP_READ);
-    perms.add(PosixFilePermission.GROUP_EXECUTE);
-    perms.add(PosixFilePermission.OTHERS_WRITE);
-    perms.add(PosixFilePermission.OTHERS_READ);
-    perms.add(PosixFilePermission.OTHERS_EXECUTE);
-    Files.setPosixFilePermissions(path, perms);
-
-//    System.out.format("Permissions after:  %s%n",  PosixFilePermissions.toString(perms));
-*/    
-  }
-
   PictureCallback jpegPictureCallback = new PictureCallback(){
     public void onPictureTaken(byte[] data, Camera arg1){
       Log.d(TAG, "CameraPreview jpegPictureCallback");
@@ -483,7 +458,7 @@ public class CameraActivity extends Fragment {
           eventListener.onPictureTaken(encodedImage);
         }
         else {
-          File fileInDirectory = new File( getActivity().getExternalFilesDir(null), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
+          File fileInDirectory = new File( getActivity().getExternalFilesDir(Enviornment.DIRECTORY_DOWNLOADS), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
           if( !fileInDirectory.exists() )
           {
             fileInDirectory.createNewFile();
