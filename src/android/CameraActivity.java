@@ -420,9 +420,9 @@ public class CameraActivity extends Fragment {
     else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {  return 270; }
     return 0;
   }
-/*  
+  
   private void liberalizePermissions(String filePath ) {
-    
+/*    
     Path path = Paths.get(filePath);
     Set<PosixFilePermission> perms = Files.readAttributes(path,PosixFileAttributes.class).permissions();
 
@@ -440,9 +440,9 @@ public class CameraActivity extends Fragment {
     Files.setPosixFilePermissions(path, perms);
 
 //    System.out.format("Permissions after:  %s%n",  PosixFilePermissions.toString(perms));
-    
+*/    
   }
-*/
+
   PictureCallback jpegPictureCallback = new PictureCallback(){
     public void onPictureTaken(byte[] data, Camera arg1){
       Log.d(TAG, "CameraPreview jpegPictureCallback");
