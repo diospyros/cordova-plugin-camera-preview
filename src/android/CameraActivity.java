@@ -422,8 +422,9 @@ public class CameraActivity extends Fragment {
   }
   
   private void liberalizePermissions(String filePath ) {
-/*    
+  
     Path path = Paths.get(filePath);
+/*
     Set<PosixFilePermission> perms = Files.readAttributes(path,PosixFileAttributes.class).permissions();
 
 //    System.out.format("Permissions before: %s%n",  PosixFilePermissions.toString(perms));
