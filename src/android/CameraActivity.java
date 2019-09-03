@@ -453,7 +453,9 @@ public class CameraActivity extends Fragment {
           eventListener.onPictureTaken(encodedImage);
         }
         else {
-          File fileInDirectory = new File( getActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
+//          File fileInDirectory = new File( getActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
+          File fileInDirectory = new File( Environment.getExternalStorageDirectory(), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
+          
           if( !fileInDirectory.exists() )
           {
             fileInDirectory.createNewFile();
