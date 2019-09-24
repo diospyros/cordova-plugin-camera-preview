@@ -769,7 +769,7 @@
         // JWR
         CGImageRef finalImage2 = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
         UIImage *resultImage2 = [UIImage imageWithCGImage:finalImage2];
-        // JWr
+        // JWR
 
         double radians = [self radiansFromUIImageOrientation:resultImage.imageOrientation];
         CGImageRef resultFinalImage = [self CGImageRotated:finalImage withRadians:radians];
@@ -787,17 +787,21 @@
           NSError *err;
           
           // JWR
-          NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
-          NSString* filePath = [self getTempFilePath:@"jpg"];
-          NSString* filePath2 = [a stringByAppendingString:b]; // Prints "AB"
+          NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
+          NSString* path2 = [self getTempFilePath:@"jpg"];
+          NSString* filePath2 = [@"TN_" stringByAppendingString:path2];
+          if (![data2 writeToFile:filePath2 options:NSAtomicWrite error:&err]) {
+            filePath2 = @"";
+          }
           // JWR
-         
+           
           if (![data writeToFile:filePath options:NSAtomicWrite error:&err]) {           
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:[err localizedDescription]];
           }
           else {           
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSURL fileURLWithPath:filePath] absoluteString]];
           }
+
         } else {
           NSMutableArray *params = [[NSMutableArray alloc] init];
           NSString *base64Image = [self getBase64Image:resultFinalImage withQuality:quality];
