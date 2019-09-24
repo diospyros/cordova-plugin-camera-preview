@@ -714,13 +714,8 @@
           [resizeFilter setValue:[NSNumber numberWithFloat:scale] forKey:@"inputScale"];
           capturedCImage = [resizeFilter outputImage];
 
-          // JWR
-          CIFilter *resizeFilter2 = [CIFilter filterWithName:@"CILanczosScaleTransform"];
-          [resizeFilter2 setValue:[[CIImage alloc] initWithCGImage:[capturedImage2 CGImage]] forKey:kCIInputImageKey];
-          [resizeFilter2 setValue:[NSNumber numberWithFloat:1.0f] forKey:@"inputAspectRatio"];
-          [resizeFilter2 setValue:[NSNumber numberWithFloat:scale2] forKey:@"inputScale"];
-          capturedCImage2 = [resizeFilter2 outputImage];
-          // JWR
+          [resizeFilter setValue:[NSNumber numberWithFloat:scale2] forKey:@"inputScale"];   // JWR
+          capturedCImage = [resizeFilter outputImage];                                     // JWR
           
         }else{
           capturedCImage = [[CIImage alloc] initWithCGImage:[capturedImage CGImage]];
@@ -749,7 +744,6 @@
         }
 
         CIFilter *filter = [self.sessionManager ciFilter];
-        CIFilter *filter2 = [self.sessionManager ciFilter];
         if (filter != nil) {
           
           [self.sessionManager.filterLock lock];
