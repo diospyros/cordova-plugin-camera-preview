@@ -745,27 +745,52 @@
 
         CIFilter *filter = [self.sessionManager ciFilter];
         if (filter != nil) {
+          
           [self.sessionManager.filterLock lock];
           [filter setValue:imageToFilter forKey:kCIInputImageKey];
           finalCImage = [filter outputImage];
           [self.sessionManager.filterLock unlock];
+          
+          [self.sessionManager.filterLock lock];                      // JWR
+          [filter setValue:imageToFilter2 forKey:kCIInputImageKey];   // JWR
+          finalCImage2 = [filter outputImage];                        // JWR
+          [self.sessionManager.filterLock unlock];                    // JWR
+          
         } else {
+          
           finalCImage = imageToFilter;
+          
+          finalCImage2 = imageToFilter2;          // JWR
         }
 
         CGImageRef finalImage = [self.cameraRenderController.ciContext createCGImage:finalCImage fromRect:finalCImage.extent];
         UIImage *resultImage = [UIImage imageWithCGImage:finalImage];
+        
+        // JWR
+        CGImageRef finalImage2 = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
+        UIImage *resultImage2 = [UIImage imageWithCGImage:finalImage2];
+        // JWr
 
         double radians = [self radiansFromUIImageOrientation:resultImage.imageOrientation];
         CGImageRef resultFinalImage = [self CGImageRotated:finalImage withRadians:radians];
+        
+        double radians2 = [self radiansFromUIImageOrientation:resultImage2.imageOrientation];         // JWr
+        CGImageRef resultFinalImage2 = [self CGImageRotated:finalImage2 withRadians:radians2];        // JWr
 
         CGImageRelease(finalImage); // release CGImageRef to remove memory leaks
+        CGImageRelease(finalImage2); // release CGImageRef to remove memory leaks                      // JWR
 
         CDVPluginResult *pluginResult;
         if (self.storeToFile) {
           NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
           NSString* filePath = [self getTempFilePath:@"jpg"];
           NSError *err;
+          
+          // JWR
+          NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
+          NSString* filePath = [self getTempFilePath:@"jpg"];
+          NSString* filePath2 = [a stringByAppendingString:b]; // Prints "AB"
+          // JWR
          
           if (![data writeToFile:filePath options:NSAtomicWrite error:&err]) {           
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:[err localizedDescription]];
@@ -781,6 +806,7 @@
         }
 
         CGImageRelease(resultFinalImage); // release CGImageRef to remove memory leaks
+        CGImageRelease(resultFinalImage2); // release CGImageRef to remove memory leaks               // JWR
 
         [pluginResult setKeepCallbackAsBool:true];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:self.onPictureTakenHandlerId];
