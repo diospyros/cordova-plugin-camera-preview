@@ -694,20 +694,32 @@
         UIImage *capturedImage  = [[UIImage alloc] initWithData:imageData];
  
         CIImage *capturedCImage;
+        // for thumbnail
+        CIImage *capturedCImage2;   // JWR
         //image resize
 
         if(width > 0 && height > 0){
           CGFloat scaleHeight = width/capturedImage.size.height;
           CGFloat scaleWidth = height/capturedImage.size.width;
           CGFloat scale = scaleHeight > scaleWidth ? scaleWidth : scaleHeight;
+        
+          // for thumbnail
+          CGFloat scaleHeight2 = 134/capturedImage.size.height;                       // JWR
+          CGFloat scaleWidth2 = 100/capturedImage.size.width;                         // JWR
+          CGFloat scale2 = scaleHeight2 > scaleWidth2 ? scaleWidth2 : scaleHeight2;   // JWR
 
           CIFilter *resizeFilter = [CIFilter filterWithName:@"CILanczosScaleTransform"];
           [resizeFilter setValue:[[CIImage alloc] initWithCGImage:[capturedImage CGImage]] forKey:kCIInputImageKey];
           [resizeFilter setValue:[NSNumber numberWithFloat:1.0f] forKey:@"inputAspectRatio"];
           [resizeFilter setValue:[NSNumber numberWithFloat:scale] forKey:@"inputScale"];
           capturedCImage = [resizeFilter outputImage];
+
+          [resizeFilter setValue:[NSNumber numberWithFloat:scale2] forKey:@"inputScale"];   // JWR
+          capturedCImage2 = [resizeFilter outputImage];                                     // JWR
+          
         }else{
           capturedCImage = [[CIImage alloc] initWithCGImage:[capturedImage CGImage]];
+          capturedCImage2 = [[CIImage alloc] initWithCGImage:[capturedImage CGImage]];      // JWR
         }
 
         CIImage *imageToFilter;
