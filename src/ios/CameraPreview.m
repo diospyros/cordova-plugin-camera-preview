@@ -6,6 +6,7 @@
 
 //#define TMP_IMAGE_PREFIX @"cpcp_capture_"
 #define TMP_IMAGE_PREFIX @"RGB"
+#define TMP_THUMBNAIL_PREFIX @"TN_RGB"
 
 @implementation CameraPreview
 
@@ -787,8 +788,7 @@
           
           // JWR
           NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
-          NSString* path2 = [self getTempFilePath:@"jpg"];
-          NSString* filePath2 = [@"TN_" stringByAppendingString:path2];
+          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES];
           [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
           // JWR
            
@@ -837,7 +837,7 @@
   return randomString;
 }
 
-- (NSString*)getTempFilePath:(NSString*)extension
+- (NSString*)getTempFilePath:(NSString*)extension :(BOOL*)useThumbnailPrefix
 {
     NSString* tmpPath = [self getTempDirectoryPath];
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
@@ -847,7 +847,11 @@
     // generate unique file name
     int i = 1;
     do {
-        filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_IMAGE_PREFIX, rndName, extension];
+        if( useThumbnailPrefix == YES )
+          filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_THUMBNAIL_PREFIX, rndName, extension];
+        else
+          filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_IMAGE_PREFIX, rndName, extension];
+      
     } while ([fileMgr fileExistsAtPath:filePath]);
     
     return filePath;
