@@ -781,7 +781,7 @@
 
         CDVPluginResult *pluginResult;
         if (self.storeToFile) {
-          NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
+          NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
           NSString* filePath = [self getTempFilePath:@"jpg"];
           NSError *err;
           
@@ -789,9 +789,7 @@
           NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
           NSString* path2 = [self getTempFilePath:@"jpg"];
           NSString* filePath2 = [@"TN_" stringByAppendingString:path2];
-          if (![data2 writeToFile:filePath2 options:NSAtomicWrite error:&err]) {
-            filePath2 = @"";
-          }
+          [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
           // JWR
            
           if (![data writeToFile:filePath options:NSAtomicWrite error:&err]) {           
