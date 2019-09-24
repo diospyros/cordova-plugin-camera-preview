@@ -725,12 +725,22 @@
         CIImage *imageToFilter;
         CIImage *finalCImage;
 
+        CIImage *imageToFilter2;      // JWR
+        CIImage *finalCImage2;        // JWR
+        
         //fix front mirroring
         if (self.sessionManager.defaultCamera == AVCaptureDevicePositionFront) {
           CGAffineTransform matrix = CGAffineTransformTranslate(CGAffineTransformMakeScale(1, -1), 0, capturedCImage.extent.size.height);
           imageToFilter = [capturedCImage imageByApplyingTransform:matrix];
+          
+          // JWR
+          CGAffineTransform matrix2 = CGAffineTransformTranslate(CGAffineTransformMakeScale(1, -1), 0, capturedCImage2.extent.size.height);
+          imageToFilter2 = [capturedCImage2 imageByApplyingTransform:matrix2];
+          // JWR
+          
         } else {
           imageToFilter = capturedCImage;
+          imageToFilter2 = capturedCImage2;       // JWR
         }
 
         CIFilter *filter = [self.sessionManager ciFilter];
