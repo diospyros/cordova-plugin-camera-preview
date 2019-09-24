@@ -766,8 +766,8 @@
         UIImage *resultImage = [UIImage imageWithCGImage:finalImage];
         
         // JWR
-        CGImageRef finalImage = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
-        UIImage *resultImage = [UIImage imageWithCGImage:finalImage2];
+        CGImageRef finalImage2 = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
+        UIImage *resultImage2 = [UIImage imageWithCGImage:finalImage2];
         // JWR
 
         double radians = [self radiansFromUIImageOrientation:resultImage.imageOrientation];
