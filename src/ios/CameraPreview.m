@@ -715,7 +715,7 @@
           capturedCImage = [resizeFilter outputImage];
 
           [resizeFilter setValue:[NSNumber numberWithFloat:scale2] forKey:@"inputScale"];   // JWR
-          capturedCImage2 = [resizeFilter outputImage];                                     // JWR
+          capturedCImage = [resizeFilter outputImage];                                     // JWR
           
         }else{
           capturedCImage = [[CIImage alloc] initWithCGImage:[capturedImage CGImage]];
