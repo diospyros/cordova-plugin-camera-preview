@@ -715,7 +715,7 @@
           capturedCImage = [resizeFilter outputImage];
 
           [resizeFilter setValue:[NSNumber numberWithFloat:scale2] forKey:@"inputScale"];   // JWR
-          capturedCImage2 = [resizeFilter outputImage];                                     // JWR
+          capturedCImage = [resizeFilter outputImage];                                     // JWR
           
         }else{
           capturedCImage = [[CIImage alloc] initWithCGImage:[capturedImage CGImage]];
@@ -753,7 +753,7 @@
           
           [self.sessionManager.filterLock lock];                      // JWR
           [filter setValue:imageToFilter2 forKey:kCIInputImageKey];   // JWR
-          finalCImage = [filter outputImage];                        // JWR
+          finalCImage2 = [filter outputImage];                        // JWR
           [self.sessionManager.filterLock unlock];                    // JWR
           
         } else {
