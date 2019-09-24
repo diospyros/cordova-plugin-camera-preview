@@ -715,7 +715,7 @@
           capturedCImage = [resizeFilter outputImage];
 
           [resizeFilter setValue:[NSNumber numberWithFloat:scale2] forKey:@"inputScale"];   // JWR
-          capturedCImage = [resizeFilter outputImage];                                     // JWR
+          capturedCImage2 = [resizeFilter outputImage];                                     // JWR
           
         }else{
           capturedCImage = [[CIImage alloc] initWithCGImage:[capturedImage CGImage]];
@@ -759,7 +759,6 @@
         } else {
           
           finalCImage = imageToFilter;
-          
           finalCImage2 = imageToFilter2;          // JWR
         }
 
@@ -767,8 +766,8 @@
         UIImage *resultImage = [UIImage imageWithCGImage:finalImage];
         
         // JWR
-        CGImageRef finalImage2 = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
-        UIImage *resultImage2 = [UIImage imageWithCGImage:finalImage2];
+        CGImageRef finalImage = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
+        UIImage *resultImage = [UIImage imageWithCGImage:finalImage2];
         // JWR
 
         double radians = [self radiansFromUIImageOrientation:resultImage.imageOrientation];
