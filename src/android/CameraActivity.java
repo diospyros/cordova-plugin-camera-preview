@@ -467,8 +467,8 @@ public class CameraActivity extends Fragment {
           eventListener.onPictureTaken(encodedImage);
         }
         else {
-          String ranString8 = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
-          File fileInDirectory = new File( getActivity().getExternalFilesDir(null), "/RGB" + ranString8 + ".jpg" );
+//          String ranString8 = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+          File fileInDirectory = new File( getActivity().getExternalFilesDir(null), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
 //          File fileInDirectory = new File( Environment.getExternalStorageDirectory(), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
 //          File tnFileInDirectory = new File( getActivity().getExternalFilesDir(null), "/TN_RGB" + ranString8 + ".jpg" );
           
