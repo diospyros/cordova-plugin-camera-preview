@@ -845,7 +845,7 @@
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
     NSString* filePath;
     // JWR
-    if ([rndName length] == 0) {
+    if( useThumbnailPrefix == NO ) {
       rndName = [self generateRandomString];
     }
     // JWR
