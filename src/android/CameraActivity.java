@@ -422,9 +422,6 @@ public class CameraActivity extends Fragment {
       Log.d(TAG, "CameraPreview jpegPictureCallback");
 
       try {
-        
-//        byte[] tnData = new byte[0];
-        
         if (!disableExifHeaderStripping) {
           Matrix matrix = new Matrix();
           if (cameraCurrentlyLocked == Camera.CameraInfo.CAMERA_FACING_FRONT) {
@@ -449,49 +446,25 @@ public class CameraActivity extends Fragment {
             data = outputStream.toByteArray();
           }
         }
-        
-        // Create thumbnail
-/*        
-        Bitmap tnBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        if (!matrix.isIdentity()) {
-          tnBitmap = applyMatrix(tnBitmap, matrix);
-        }
-        tnBitmap = createScaledBitmap ( tnBitmap, 100, 134, true );
-        ByteArrayOutputStream tnOutputStream = new ByteArrayOutputStream();
-        tnBitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, tnOutputStream);
-        tnData = tnOutputStream.toByteArray();
-*/
+
         if (!storeToFile) {
           String encodedImage = Base64.encodeToString(data, Base64.NO_WRAP);
 
           eventListener.onPictureTaken(encodedImage);
         }
         else {
-//          String ranString8 = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
           File fileInDirectory = new File( getActivity().getExternalFilesDir(null), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
 //          File fileInDirectory = new File( Environment.getExternalStorageDirectory(), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
-//          File tnFileInDirectory = new File( getActivity().getExternalFilesDir(null), "/TN_RGB" + ranString8 + ".jpg" );
           
           if( !fileInDirectory.exists() )
           {
             fileInDirectory.createNewFile();
-            tnFileInDirectory.createNewFile();
           }
-          
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
-          
-//          tnFileInDirectory.setReadable(true, false);
-//          tnFileInDirectory.setWritable(true, false);
-          
           FileOutputStream out = new FileOutputStream( fileInDirectory );
           out.write(data);
           out.close();
-          
-//          tnFileOutputStream tnOut = new FileOutputStream( tnFileInDirectory );
-//          tnOut.write(tnData);
-//          tnOut.close();
-          
           eventListener.onPictureTaken( fileInDirectory.getAbsolutePath() );
         }
         Log.d(TAG, "CameraPreview pictureTakenHandler called back");
