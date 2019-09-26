@@ -785,7 +785,7 @@
           
           // JWR
           NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
-          NSMutableString *ranString = [NSMutableString stringWithString: @""];
+          NSString *ranString = @"";
           NSString* filePath = [self getTempFilePath:@"jpg" :NO :ranString];
           NSError *err;
           
@@ -831,7 +831,7 @@
 - (NSString*)generateRandomString
 {
   NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  NSString *randomString = @"";
+  NSMutableString *randomString = [NSMutableString stringWithCapacity: 8];
   for (int i=0; i<8; i++) 
   {
     [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
