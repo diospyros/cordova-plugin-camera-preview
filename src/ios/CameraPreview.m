@@ -782,13 +782,15 @@
 
         CDVPluginResult *pluginResult;
         if (self.storeToFile) {
-          NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
-          NSString* filePath = [self getTempFilePath:@"jpg" :NO];
-          NSError *err;
           
           // JWR
+          NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
+          NSMutableString *ranString = [NSMutableString stringWithString: @""];
+          NSString* filePath = [self getTempFilePath:@"jpg" :NO :ranString];
+          NSError *err;
+          
           NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
-          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES];
+          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES : ranString];
           [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
           // JWR
            
@@ -829,7 +831,7 @@
 - (NSString*)generateRandomString
 {
   NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  NSMutableString *randomString = [NSMutableString stringWithCapacity: 8];
+  NSString *randomString = @"";
   for (int i=0; i<8; i++) 
   {
     [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
@@ -837,12 +839,16 @@
   return randomString;
 }
 
-- (NSString*)getTempFilePath:(NSString*)extension :(BOOL*)useThumbnailPrefix
+- (NSString*)getTempFilePath:(NSString*)extension :(BOOL*)useThumbnailPrefix :(NSString*)rndName
 {
     NSString* tmpPath = [self getTempDirectoryPath];
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
     NSString* filePath;
-    NSString* rndName = [self generateRandomString];
+    // JWR
+    if ([rndName length] == 0) {
+      rndName = [self generateRandomString];
+    }
+    // JWR
 
     // generate unique file name
     int i = 1;
