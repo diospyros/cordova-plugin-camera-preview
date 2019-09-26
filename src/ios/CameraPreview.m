@@ -774,8 +774,8 @@
         double radians = [self radiansFromUIImageOrientation:resultImage.imageOrientation];
         CGImageRef resultFinalImage = [self CGImageRotated:finalImage withRadians:radians];
         
-        double radians2 = [self radiansFromUIImageOrientation:resultImage2.imageOrientation];         // JWr
-        CGImageRef resultFinalImage2 = [self CGImageRotated:finalImage2 withRadians:radians2];        // JWr
+        double radians2 = [self radiansFromUIImageOrientation:resultImage2.imageOrientation];         // JWR
+        CGImageRef resultFinalImage2 = [self CGImageRotated:finalImage2 withRadians:radians2];        // JWR
 
         CGImageRelease(finalImage); // release CGImageRef to remove memory leaks
         CGImageRelease(finalImage2); // release CGImageRef to remove memory leaks                      // JWR
