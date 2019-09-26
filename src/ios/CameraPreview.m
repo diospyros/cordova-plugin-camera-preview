@@ -778,7 +778,7 @@
         CGImageRef resultFinalImage2 = [self CGImageRotated:finalImage2 withRadians:radians2];        // JWR
 
         CGImageRelease(finalImage); // release CGImageRef to remove memory leaks
-        CGImageRelease(finalImage2); // release CGImageRef to remove memory leaks                      // JWR *
+        CGImageRelease(finalImage2); // release CGImageRef to remove memory leaks                      // JWR
 
         CDVPluginResult *pluginResult;
         if (self.storeToFile) {
@@ -787,7 +787,7 @@
           NSError *err;
           
           // JWR
-          NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality); // *
+          NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
           NSString* filePath2 = [self getTempFilePath:@"jpg" :YES];
           [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
           // JWR
