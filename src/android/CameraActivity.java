@@ -423,7 +423,7 @@ public class CameraActivity extends Fragment {
 
       try {
         
-        byte[] tnData = new byte[0];
+//        byte[] tnData = new byte[0];
         
         if (!disableExifHeaderStripping) {
           Matrix matrix = new Matrix();
@@ -451,6 +451,7 @@ public class CameraActivity extends Fragment {
         }
         
         // Create thumbnail
+/*        
         Bitmap tnBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         if (!matrix.isIdentity()) {
           tnBitmap = applyMatrix(tnBitmap, matrix);
@@ -459,7 +460,7 @@ public class CameraActivity extends Fragment {
         ByteArrayOutputStream tnOutputStream = new ByteArrayOutputStream();
         tnBitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, tnOutputStream);
         tnData = tnOutputStream.toByteArray();
-
+*/
         if (!storeToFile) {
           String encodedImage = Base64.encodeToString(data, Base64.NO_WRAP);
 
@@ -469,7 +470,7 @@ public class CameraActivity extends Fragment {
           String ranString8 = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
           File fileInDirectory = new File( getActivity().getExternalFilesDir(null), "/RGB" + ranString8 + ".jpg" );
 //          File fileInDirectory = new File( Environment.getExternalStorageDirectory(), "/RGB" + UUID.randomUUID().toString().replace("-", "").substring(0, 8) + ".jpg" );
-          File tnFileInDirectory = new File( getActivity().getExternalFilesDir(null), "/TN_RGB" + ranString8 + ".jpg" );
+//          File tnFileInDirectory = new File( getActivity().getExternalFilesDir(null), "/TN_RGB" + ranString8 + ".jpg" );
           
           if( !fileInDirectory.exists() )
           {
@@ -480,16 +481,16 @@ public class CameraActivity extends Fragment {
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
           
-          tnFileInDirectory.setReadable(true, false);
-          tnFileInDirectory.setWritable(true, false);
+//          tnFileInDirectory.setReadable(true, false);
+//          tnFileInDirectory.setWritable(true, false);
           
           FileOutputStream out = new FileOutputStream( fileInDirectory );
           out.write(data);
           out.close();
           
-          tnFileOutputStream tnOut = new FileOutputStream( tnFileInDirectory );
-          tnOut.write(data);
-          tnOut.close();
+//          tnFileOutputStream tnOut = new FileOutputStream( tnFileInDirectory );
+//          tnOut.write(tnData);
+//          tnOut.close();
           
           eventListener.onPictureTaken( fileInDirectory.getAbsolutePath() );
         }
