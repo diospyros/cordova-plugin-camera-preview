@@ -774,8 +774,8 @@
         double radians = [self radiansFromUIImageOrientation:resultImage.imageOrientation];
         CGImageRef resultFinalImage = [self CGImageRotated:finalImage withRadians:radians];
         
-        double radians2 = [self radiansFromUIImageOrientation:resultImage2.imageOrientation];         // JWR
-        CGImageRef resultFinalImage2 = [self CGImageRotated:finalImage2 withRadians:radians2];        // JWR
+//        double radians2 = [self radiansFromUIImageOrientation:resultImage2.imageOrientation];         // JWR
+//        CGImageRef resultFinalImage2 = [self CGImageRotated:finalImage2 withRadians:radians2];        // JWR
 
         CGImageRelease(finalImage); // release CGImageRef to remove memory leaks
         CGImageRelease(finalImage2); // release CGImageRef to remove memory leaks                      // JWR
@@ -787,9 +787,9 @@
           NSError *err;
           
           // JWR
-          NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
-          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES];
-          [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
+//          NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
+//          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES];
+//          [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
           // JWR
            
           if (![data writeToFile:filePath options:NSAtomicWrite error:&err]) {           
@@ -807,7 +807,7 @@
         }
 
         CGImageRelease(resultFinalImage); // release CGImageRef to remove memory leaks
-        CGImageRelease(resultFinalImage2); // release CGImageRef to remove memory leaks               // JWR
+//        CGImageRelease(resultFinalImage2); // release CGImageRef to remove memory leaks               // JWR
 
         [pluginResult setKeepCallbackAsBool:true];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:self.onPictureTakenHandlerId];
