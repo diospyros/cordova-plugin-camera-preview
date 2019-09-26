@@ -767,8 +767,8 @@
         UIImage *resultImage = [UIImage imageWithCGImage:finalImage];
         
         // JWR
-        CGImageRef finalImage2 = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
-        UIImage *resultImage2 = [UIImage imageWithCGImage:finalImage2];
+//        CGImageRef finalImage2 = [self.cameraRenderController.ciContext createCGImage:finalCImage2 fromRect:finalCImage2.extent];
+//        UIImage *resultImage2 = [UIImage imageWithCGImage:finalImage2];
         // JWR
 
         double radians = [self radiansFromUIImageOrientation:resultImage.imageOrientation];
@@ -778,12 +778,12 @@
 //        CGImageRef resultFinalImage2 = [self CGImageRotated:finalImage2 withRadians:radians2];        // JWR
 
         CGImageRelease(finalImage); // release CGImageRef to remove memory leaks
-        CGImageRelease(finalImage2); // release CGImageRef to remove memory leaks                      // JWR
+//        CGImageRelease(finalImage2); // release CGImageRef to remove memory leaks                      // JWR
 
         CDVPluginResult *pluginResult;
         if (self.storeToFile) {
           NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
-          NSString* filePath = [self getTempFilePath:@"jpg"];
+          NSString* filePath = [self getTempFilePath:@"jpg" :NO];
           NSError *err;
           
           // JWR
