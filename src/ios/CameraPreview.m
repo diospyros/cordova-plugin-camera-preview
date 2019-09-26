@@ -788,8 +788,8 @@
           
           // JWR
           NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality); // *
-//          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES];
-//          [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
+          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES];
+          [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
           // JWR
            
           if (![data writeToFile:filePath options:NSAtomicWrite error:&err]) {           
