@@ -786,11 +786,11 @@
           // JWR
           NSData *data = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage], (CGFloat) quality);
           NSString *ranString = @"";
-          NSString* filePath = [self getTempFilePath:@"jpg" :NO :ranString];
+          NSString* filePath = [self getTempFilePath:@"jpg" :NO :&ranString];
           NSError *err;
           
           NSData *data2 = UIImageJPEGRepresentation([UIImage imageWithCGImage:resultFinalImage2], (CGFloat) quality);
-          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES : ranString];
+          NSString* filePath2 = [self getTempFilePath:@"jpg" :YES :&ranString];
           [data2 writeToFile:filePath2 options:NSAtomicWrite error:&err];
           // JWR
            
@@ -839,14 +839,14 @@
   return randomString;
 }
 
-- (NSString*)getTempFilePath:(NSString*)extension :(BOOL*)useThumbnailPrefix :(NSString*)rndName
+- (NSString*)getTempFilePath:(NSString*)extension :(BOOL*)useThumbnailPrefix :(NSString**)rndName
 {
     NSString* tmpPath = [self getTempDirectoryPath];
     NSFileManager* fileMgr = [[NSFileManager alloc] init]; // recommended by Apple (vs [NSFileManager defaultManager]) to be threadsafe
     NSString* filePath;
     // JWR
     if( useThumbnailPrefix == NO ) {
-      rndName = [self generateRandomString];
+      *rndName = [self generateRandomString];
     }
     // JWR
 
@@ -854,9 +854,9 @@
     int i = 1;
     do {
         if( useThumbnailPrefix == YES )
-          filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_THUMBNAIL_PREFIX, rndName, extension];
+          filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_THUMBNAIL_PREFIX, *rndName, extension];
         else
-          filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_IMAGE_PREFIX, rndName, extension];
+          filePath = [NSString stringWithFormat:@"%@/%@%@.%@", tmpPath, TMP_IMAGE_PREFIX, *rndName, extension];
       
     } while ([fileMgr fileExistsAtPath:filePath]);
     
