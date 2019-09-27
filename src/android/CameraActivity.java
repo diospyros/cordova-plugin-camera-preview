@@ -452,9 +452,6 @@ public class CameraActivity extends Fragment {
         
         // Create thumbnail    
         Bitmap tnBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        if (!matrix.isIdentity()) {
-          tnBitmap = applyMatrix(tnBitmap, matrix);
-        }
 
         if (!storeToFile) {
           String encodedImage = Base64.encodeToString(data, Base64.NO_WRAP);
