@@ -425,9 +425,6 @@ public class CameraActivity extends Fragment {
         
         byte[] tnData = new byte[0];
         
-        // Create thumbnail bitmap
-        Bitmap tnBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        
         if (!disableExifHeaderStripping) {
           Matrix matrix = new Matrix();
           if (cameraCurrentlyLocked == Camera.CameraInfo.CAMERA_FACING_FRONT) {
@@ -446,7 +443,6 @@ public class CameraActivity extends Fragment {
           if (!matrix.isIdentity()) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
             bitmap = applyMatrix(bitmap, matrix);
-            tnBitmap = applyMatrix(tnBitmap, matrix);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, outputStream);
@@ -454,9 +450,10 @@ public class CameraActivity extends Fragment {
           }
         }
         
-        // Process thumbnail
-        int   twidth = 100, theight = 134;        
-        tnBitmap = Bitmap.createScaledBitmap ( tnBitmap, tnwidth, theight, true );
+        // Create thumbnail bitmap
+        int   tWidth = 100, tHeight = 134;
+        Bitmap tnBitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        tnBitmap = Bitmap.createScaledBitmap ( tnBitmap, tWidth, tHeight, true );
         ByteArrayOutputStream tnOutputStream = new ByteArrayOutputStream();
         tnBitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, tnOutputStream);
         tnData = tnOutputStream.toByteArray();
