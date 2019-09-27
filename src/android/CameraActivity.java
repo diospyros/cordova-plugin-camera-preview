@@ -479,16 +479,16 @@ public class CameraActivity extends Fragment {
           
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
-          tnFileInDirectory.setReadable(true, false);
-          tnFileInDirectory.setWritable(true, false);
+//          tnFileInDirectory.setReadable(true, false);
+//          tnFileInDirectory.setWritable(true, false);
 
           FileOutputStream out = new FileOutputStream( fileInDirectory );
           out.write(data);
           out.close();
 
-          tnFileOutputStream tnOut = new FileOutputStream( tnFileInDirectory );
-          tnOut.write(tnData);
-          tnOut.close();
+//          tnFileOutputStream tnOut = new FileOutputStream( tnFileInDirectory );
+//          tnOut.write(tnData);
+//          tnOut.close();
 
           tnBitmap.recycle();
           
