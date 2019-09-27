@@ -454,7 +454,8 @@ public class CameraActivity extends Fragment {
           }
         }
         
-        // Process thumbnail    
+        // Process thumbnail
+        int   twidth = 100, theight = 134;        
 //        tnBitmap = createScaledBitmap ( tnBitmap, 100, 134, true );
         ByteArrayOutputStream tnOutputStream = new ByteArrayOutputStream();
         tnBitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, tnOutputStream);
