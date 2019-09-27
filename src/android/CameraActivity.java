@@ -455,10 +455,10 @@ public class CameraActivity extends Fragment {
         }
         
         // Process thumbnail    
-        tnBitmap = createScaledBitmap ( tnBitmap, 100, 134, true );
-        ByteArrayOutputStream tnOutputStream = new ByteArrayOutputStream();
-        tnBitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, tnOutputStream);
-        tnData = tnOutputStream.toByteArray();
+//        tnBitmap = createScaledBitmap ( tnBitmap, 100, 134, true );
+//        ByteArrayOutputStream tnOutputStream = new ByteArrayOutputStream();
+        //tnBitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, tnOutputStream);
+//        tnData = tnOutputStream.toByteArray();
 
         if (!storeToFile) {
           String encodedImage = Base64.encodeToString(data, Base64.NO_WRAP);
