@@ -460,6 +460,8 @@ public class CameraActivity extends Fragment {
         tnBitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, tnOutputStream);
         tnData = tnOutputStream.toByteArray();
 
+        tnBitmap.recycle();
+
         if (!storeToFile) {
           String encodedImage = Base64.encodeToString(data, Base64.NO_WRAP);
 
@@ -479,8 +481,8 @@ public class CameraActivity extends Fragment {
           
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
-//          tnFileInDirectory.setReadable(true, false);
-//          tnFileInDirectory.setWritable(true, false);
+          tnFileInDirectory.setReadable(true, false);
+          tnFileInDirectory.setWritable(true, false);
 
           FileOutputStream out = new FileOutputStream( fileInDirectory );
           out.write(data);
@@ -489,8 +491,6 @@ public class CameraActivity extends Fragment {
 //          tnFileOutputStream tnOut = new FileOutputStream( tnFileInDirectory );
 //          tnOut.write(tnData);
 //          tnOut.close();
-
-          tnBitmap.recycle();
           
           eventListener.onPictureTaken( fileInDirectory.getAbsolutePath() );
         }
