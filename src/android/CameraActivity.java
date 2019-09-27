@@ -447,6 +447,8 @@ public class CameraActivity extends Fragment {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.JPEG, currentQuality, outputStream);
             data = outputStream.toByteArray();
+            
+            bitmap.recycle();
           }
         }
         
@@ -474,11 +476,22 @@ public class CameraActivity extends Fragment {
           {
             fileInDirectory.createNewFile();
           }
+          
           fileInDirectory.setReadable(true, false);
           fileInDirectory.setWritable(true, false);
+          tnFileInDirectory.setReadable(true, false);
+          tnFileInDirectory.setWritable(true, false);
+
           FileOutputStream out = new FileOutputStream( fileInDirectory );
           out.write(data);
           out.close();
+
+          tnFileOutputStream tnOut = new FileOutputStream( tnFileInDirectory );
+          tnOut.write(tnData);
+          tnOut.close();
+
+          tnBitmap.recycle();
+          
           eventListener.onPictureTaken( fileInDirectory.getAbsolutePath() );
         }
         Log.d(TAG, "CameraPreview pictureTakenHandler called back");
